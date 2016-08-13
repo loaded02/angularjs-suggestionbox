@@ -1,0 +1,18 @@
+<h2>{{post.title}}</h2>
+<p>{{post.comments}}</p>
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat"comment in post.comments">
+    {{comment.body}}
+    <span class="glyphicon glyphicon-plus-sign" ng-click="upvoteComment(comment)"></span> Upvotes: {{comment.upvotes}}
+  </li>
+  <li>
+    <form ng-submit="addComment()" style="margin-top: 50px">
+      <h3> Submit Your Comment </h3>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Great comment here" ng-model="newComment"></input>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </li>
+</ul>
+<a href="#/">Home</a>
