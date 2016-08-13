@@ -1,7 +1,6 @@
 <h2>{{post.title}}</h2>
-<p>{{post.comments}}</p>
 <ul class="list-group">
-  <li class="list-group-item" ng-repeat"comment in post.comments">
+  <li class="list-group-item" ng-repeat="comment in post.comments">
     {{comment.body}}
     <span class="glyphicon glyphicon-plus-sign" ng-click="upvoteComment(comment)"></span> Upvotes: {{comment.upvotes}}
   </li>
