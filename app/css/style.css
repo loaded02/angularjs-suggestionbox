@@ -1,0 +1,17 @@
+.jumbotron {
+    background-color: #4D4D4D;
+    color: #8EE5EE;
+    padding: 100px 25px;
+}
+
+.container-fluid {
+  padding: 60px 50px;
+}
+
+.logo {
+  font-size: 60px;
+}
+
+.logo-small {
+  font-size: 30px;
+}

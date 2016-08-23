@@ -7,9 +7,19 @@
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/
 css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body ng-app="SuggestionBox">
-    <h1> Suggestion Box </h1>
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-sm-4 text-right">
+          <img src="images/idea.png" height="80px"/>
+        </div>
+        <div class="col-sm-8 text-left">
+          <h1> Suggestion Box </h1>
+        </div>
+      </div>
+    </div>
     <div ng-view></div>
 
     <!-- Modules -->
