@@ -4,7 +4,7 @@
 angular.module('suggestionDetail')
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-            .when('/suggestion/:id', {
+            .when('/suggestions/:id', {
                 templateUrl: '/suggestion-detail/views/suggestion-detail.client.view.html'
             });
     }]);

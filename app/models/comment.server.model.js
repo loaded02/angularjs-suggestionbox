@@ -19,10 +19,6 @@ var CommentSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
-    suggestion: {
-        type: Schema.ObjectId,
-        ref: 'Suggestion'
-    },
     upvotes: {
         type: Number,
         default: 0

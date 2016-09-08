@@ -1,33 +1,40 @@
-<section ng-controller="SuggestionListController" ng-init="find()">
-  <section class="login">
-    <div data-ng-show="!authentication.user">
-      <a href="/signup">Signup</a>
-      <a href="/signin">Signin</a>
+<section ng-controller="SuggestionListController" ng-init="find();">
+    <section class="login">
+        <div data-ng-show="!authentication.user">
+            <a href="/signup">Signup</a>
+            <a href="/signin">Signin</a>
+        </div>
+        <div data-ng-show="authentication.user">
+            <h3>Hello <span data-ng-bind="authentication.user.fullName"></span></h3>
+            <a href="/signout">Signout</a>
+        </div>
+    </section>
+    <div class="container-fluid text-center" data-ng-show="authentication.user">
+        <form ng-submit="create()" class="form-inline">
+            <h3> Submit Your Suggestion </h3>
+            <input type="text" class="form-control" size="60" placeholder="Great ideas here" ng-model="title">
+            <button type="submit" class="btn btn-primary">Suggest</button>
+        </form>
     </div>
-    <div data-ng-show="authentication.user">
-      <h3>Hello <span data-ng-bind="authentication.user.fullName"></span></h3>
-      <a href="/signout">Signout</a>
+    <div class="container-fluid">
+        <div class="row well" ng-repeat="suggestion in suggestions | orderBy:'-upvotes'">
+            <div class="col-sm-4 text-right">
+                <span class="glyphicon glyphicon-inbox logo"></span>
+            </div>
+            <div class="col-sm-8 text-left">
+                <small data-ng-bind="suggestion.created | date:'medium'"></small>
+                <small>/</small>
+                <small data-ng-bind="suggestion.creator.fullName"></small>
+                <h4>{{suggestion.title}}</h4>
+                <p>
+                    <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upVote(suggestion)" data-ng-show="authentication.user"></span> Upvotes: {{suggestion.upvotes}}
+                </p>
+                <a href="/#!/suggestions/{{suggestion._id}}">Comments</a>
+                <div data-ng-show="authentication.user._id == suggestion.creator._id">
+                    <a href="/#!/suggestions/{{suggestion._id}}/edit">edit</a>
+                    <a href="/#!/" data-ng-click="delete(suggestion);">delete</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
-  <div class="container-fluid text-center" data-ng-show="authentication.user">
-    <form ng-submit="create()" class="form-inline">
-      <h3> Submit Your Suggestion </h3>
-      <input type="text" class="form-control" size="60" placeholder="Great ideas here" ng-model="title">
-      <button type="submit" class="btn btn-primary">Suggest</button>
-    </form>
-  </div>
-  <div class="container-fluid">
-    <div class="row well" ng-repeat="suggestion in suggestions | orderBy:'-upvotes'">
-      <div class="col-sm-4 text-right">
-        <span class="glyphicon glyphicon-inbox logo" data-ng-show="authentication.user"></span>
-      </div>
-      <div class="col-sm-8 text-left">
-        <p>{{suggestion.title}}</p>
-        <p>
-          <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upVote(suggestion)"></span> Upvotes: {{suggestion.upvotes}}
-        </p>
-        <a href="/#!/suggestion/{{$index}}">Comments</a>
-      </div>
-    </div>
-  </div>
 </section>

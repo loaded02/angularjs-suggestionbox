@@ -29,12 +29,6 @@ angular.module('suggestionList')
                 $scope.suggestions = Suggestions.query();
             };
 
-            $scope.findOne = function () {
-                $scope.suggestion = Suggestions.get({
-                    suggestionId: $routeParams.suggestionId
-                });
-            };
-
             $scope.update = function() {
                 $scope.suggestion.$update(function () {
                     $location.path('suggestions/' + $scope.suggestion._id);
@@ -51,10 +45,6 @@ angular.module('suggestionList')
                                 $scope.suggestions.splice(i, 1);
                             }
                         }
-                    });
-                } else {
-                    $scope.suggestion.$remove(function () {
-                        $location.path('suggestions');
                     });
                 }
             };

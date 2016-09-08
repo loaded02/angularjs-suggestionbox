@@ -29,6 +29,7 @@ exports.create = function (req, res) {
 exports.list = function (req, res) {
     Suggestion.find().sort('-created')
         .populate('creator', 'firstName lastName fullName')
+        .populate('comments', 'created title creator upVotes')
         .exec(function (err, suggestions) {
             if (err) {
                 return res.status(400).send({
@@ -43,6 +44,7 @@ exports.list = function (req, res) {
 exports.suggestionByID = function (req, res, next, id) {
     Suggestion.findById(id)
         .populate('creator', 'firstName lastName fullName')
+        .populate('comments', 'created title creator upVotes')
         .exec(function (err, suggestion) {
             if (err) return next(err);
             if (!suggestion) return next(new Error('Failed to load suggestion ' + id));
@@ -60,7 +62,8 @@ exports.update = function (req, res) {
     var suggestion = req.suggestion;
 
     suggestion.title = req.body.title;
-    suggestion.upVote = req.body.upVote;
+    suggestion.upVotes = req.body.upVotes;
+    suggestion.comments = req.body.comments.slice();
 
     suggestion.save(function (err) {
         if (err) {

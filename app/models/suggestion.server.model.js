@@ -19,7 +19,27 @@ var SuggestionSchema = new Schema({
     upvotes: {
         type: Number,
         default: 0
-    }
+    },
+    comments: [{
+        title: {
+            type: String,
+            default: '',
+            trim: true,
+            required: 'Title cannot be blank.'
+        },
+        creator: {
+            type: Schema.ObjectId,
+            ref: 'User'
+        },
+        created: {
+            type: Date,
+            default: Date.now()
+        },
+        upvotes: {
+            type: Number,
+            default: 0
+        }
+    }]
 });
 
 mongoose.model('Suggestion', SuggestionSchema);

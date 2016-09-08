@@ -29,7 +29,6 @@ exports.create = function (req, res) {
 exports.list = function (req, res) {
     Comment.find().sort('-created')
         .populate('creator', 'firstName lastName fullName')
-        .populate('suggestion', 'title')
         .exec(function (err, comments) {
             if (err) {
                 return res.status(400).send({
@@ -44,7 +43,6 @@ exports.list = function (req, res) {
 exports.commentByID = function (req, res, next, id) {
     Comment.findById(id)
         .populate('creator', 'firstName lastName fullName')
-        .populate('suggestion', 'title')
         .exec(function (err, comment) {
             if (err) return next(err);
             if (!comment) return next(new Error('Failed to load comment ' + id));
