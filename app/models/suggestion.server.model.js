@@ -15,6 +15,10 @@ var SuggestionSchema = new Schema({
     creator: {
         type: Schema.ObjectId,
         ref: 'User'
+    },
+    upvotes: {
+        type: Number,
+        default: 0
     }
 });
 

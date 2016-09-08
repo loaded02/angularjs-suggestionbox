@@ -8,6 +8,8 @@ module.exports = function() {
     var db = mongoose.connect(config.db);
 
     require('../app/models/user.server.model');
+    require('../app/models/suggestion.server.model');
+    require('../app/models/comment.server.model');
 
     return db;
 }

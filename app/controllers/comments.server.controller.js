@@ -62,6 +62,7 @@ exports.update = function (req, res) {
     var comment = req.comment;
 
     comment.title = req.body.title;
+    comment.upvotes = req.body.upVotes;
 
     comment.save(function (err) {
         if (err) {

@@ -1,5 +1,5 @@
 var users = require('../../app/controllers/users.server.controller'),
-    suggestions = require('../controllers/suggestions.server.controller.js');
+    suggestions = require('../../app/controllers/suggestions.server.controller');
 
 module.exports = function (app) {
     app.route('/api/suggestions')
@@ -8,7 +8,7 @@ module.exports = function (app) {
 
     app.route('/api/suggestions/:suggestionId')
         .get(suggestions.read)
-        .put(user.requiresLogin, suggestions.hasAuthorization, suggestions.update)
+        .put(users.requiresLogin, suggestions.hasAuthorization, suggestions.update)
         .delete(users.requiresLogin, suggestions.hasAuthorization, suggestions.delete);
 
     app.param('suggestionId', suggestions.suggestionByID);
