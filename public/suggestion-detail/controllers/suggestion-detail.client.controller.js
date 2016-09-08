@@ -1,10 +1,12 @@
-app.controller('SuggestionController', [
+angular.module('suggestionDetail')
+    .controller('SuggestionDetailController', [
   '$scope',
   '$routeParams',
-  'suggestions',
-
-  function($scope, $routeParams, suggestions) {
-    $scope.post = suggestions.posts[$routeParams.id];
+  'Suggestions',
+  'Authentication',
+  function($scope, $routeParams, Suggestions, Authentication) {
+    $scope.authentication = Authentication;
+    $scope.post = Suggestions.posts[$routeParams.id];
 
     $scope.addComment = function() {
       //if input empty, don't submit
@@ -12,7 +14,7 @@ app.controller('SuggestionController', [
         return;
       }
 
-      //push comment posts in suggestions.js
+      //push comment posts in suggestion-list.js
       $scope.post.comments.push({
         body: $scope.newComment,
         upvotes: 0

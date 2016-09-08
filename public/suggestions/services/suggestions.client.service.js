@@ -1,4 +1,5 @@
-app.factory('suggestions', [function(){
+angular.module('suggestions')
+	.factory('Suggestions', [function(){
   var demoSuggestions = {
   posts: [
   {

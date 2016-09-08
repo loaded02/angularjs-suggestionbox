@@ -1,9 +1,11 @@
-app.controller('HomeController', [
+angular.module('suggestionList')
+    .controller('SuggestionListController', [
   '$scope',
-  'suggestions',
-
-  function($scope, suggestions) {
-    $scope.posts = suggestions.posts;
+  'Suggestions',
+  'Authentication',
+  function($scope, Suggestions, Authentication) {
+    $scope.authentication = Authentication;
+    $scope.posts = Suggestions.posts;
 
     $scope.addSuggestion = function() {
       //if input empty, don't submit
@@ -11,7 +13,7 @@ app.controller('HomeController', [
         return;
       }
 
-      //push suggestion posts in suggestions.js
+      //push suggestion posts in suggestion-list.js
       $scope.posts.push({
         title: $scope.title,
         upvotes: 0,
