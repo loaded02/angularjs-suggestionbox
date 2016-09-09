@@ -19,3 +19,7 @@
 .bg-grey {
     background-color: #f6f6f6;
 }
+
+.login, .inputbox {
+    padding: 20px 50px;
+}

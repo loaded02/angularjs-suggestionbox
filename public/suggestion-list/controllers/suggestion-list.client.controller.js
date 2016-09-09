@@ -14,7 +14,8 @@ angular.module('suggestionList')
                     return;
                 }
                 var suggestion = new Suggestions({
-                    title: this.title
+                    title: this.title,
+                    body: this.body
                 });
                 suggestion.$save(function (response) {
                     $location.path('suggestions/' + response._id);
@@ -23,6 +24,7 @@ angular.module('suggestionList')
                 });
                 //after submit, clear input
                 $scope.title = '';
+                $scope.body = '';
             };
 
             $scope.find = function () {
@@ -51,5 +53,6 @@ angular.module('suggestionList')
 
             $scope.upVote = function(suggestion) {
                 suggestion.upvotes += 1;
+                $scope.update();
             };
         }]);

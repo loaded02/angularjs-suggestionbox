@@ -9,10 +9,11 @@
             <a href="/signout">Signout</a>
         </div>
     </section>
-    <div class="container-fluid text-center" data-ng-show="authentication.user">
+    <div class="inputbox text-center" data-ng-show="authentication.user">
         <form ng-submit="create()" class="form-inline">
             <h3> Submit Your Suggestion </h3>
             <input type="text" class="form-control" size="60" placeholder="Great ideas here" ng-model="title">
+            <textarea class="form-control" cols="60" rows="5" placeholder="Some description" ng-model="body"></textarea>
             <button type="submit" class="btn btn-primary">Suggest</button>
         </form>
     </div>
@@ -25,11 +26,10 @@
                 <small data-ng-bind="suggestion.created | date:'medium'"></small>
                 <small>/</small>
                 <small data-ng-bind="suggestion.creator.fullName"></small>
-                <h4>{{suggestion.title}}</h4>
+                <a href="/#!/suggestions/{{suggestion._id}}"><h4>{{suggestion.title}}</h4></a>
                 <p>
-                    <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upVote(suggestion)" data-ng-show="authentication.user"></span> Upvotes: {{suggestion.upvotes}}
+                    <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upVote(suggestion)" data-ng-show="authentication.user._id !== suggestion.creator._id"></span> Upvotes: {{suggestion.upvotes}}
                 </p>
-                <a href="/#!/suggestions/{{suggestion._id}}">Comments</a>
                 <div data-ng-show="authentication.user._id == suggestion.creator._id">
                     <a href="/#!/suggestions/{{suggestion._id}}/edit">edit</a>
                     <a href="/#!/" data-ng-click="delete(suggestion);">delete</a>

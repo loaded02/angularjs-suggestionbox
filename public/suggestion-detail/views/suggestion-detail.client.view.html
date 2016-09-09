@@ -9,8 +9,8 @@
       <a href="/signout">Signout</a>
     </div>
   </section>
-  <div class="container-fluid text-center" data-ng-show="authentication.user">
-    <form ng-submit="addComment()" class="form-inline">
+  <div class="inputbox text-center" data-ng-show="authentication.user">
+    <form ng-submit="update()" class="form-inline">
       <h3> Submit Your Comment </h3>
       <input type="text" class="form-control" size="60" placeholder="Great comment here" ng-model="newComment"></input>
       <button type="submit" class="btn btn-primary">Submit</button>
@@ -19,9 +19,10 @@
   <div class="container-fluid">
       <div>
         <h2>{{suggestion.title}}</h2>
+        <p>{{suggestion.body}}</p>
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="comment in suggestion.comments | orderBy:'-upvotes'">
-            <p>{{comment.body}}</p>
+            <p>{{comment.title}}</p>
             <p>
               <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upvoteComment(comment)" data-ng-show="authentication.user"></span> Upvotes: {{comment.upvotes}}
             </p>

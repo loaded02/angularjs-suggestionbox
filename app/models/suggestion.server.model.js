@@ -20,6 +20,10 @@ var SuggestionSchema = new Schema({
         type: Number,
         default: 0
     },
+    body: {
+        type: String,
+        default: ''
+    },
     comments: [{
         title: {
             type: String,

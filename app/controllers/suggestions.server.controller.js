@@ -62,6 +62,7 @@ exports.update = function (req, res) {
     var suggestion = req.suggestion;
 
     suggestion.title = req.body.title;
+    suggestion.body = req.body.body;
     suggestion.upVotes = req.body.upVotes;
     suggestion.comments = req.body.comments.slice();
 
