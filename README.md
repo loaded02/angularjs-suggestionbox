@@ -1,14 +1,17 @@
 # AngularJS-Suggestionbox
-based on:
-[angular-seed] (https://github.com/angular/angular-seed/)
 
 ##dependencies:
 * git
 * node.js
 * npm
+* bower
+* mongodb
 
 ##get started:
 * clone repository
 * cd rep folder
-* npm start
-* visit http://localhost:8000/ in browser
+* npm install
+* bower install
+* service mongod restart
+* node server
+* visit http://localhost:3000/ in browser

@@ -20,6 +20,10 @@
       <div>
         <h2>{{suggestion.title}}</h2>
         <p>{{suggestion.body}}</p>
+        <div data-ng-show="authentication.user._id == suggestion.creator._id">
+          <a href="/#!/suggestions/{{suggestion._id}}/edit">edit</a>
+          <a href="/#!/" data-ng-click="delete(suggestion);">delete</a>
+        </div>
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="comment in suggestion.comments | orderBy:'-upvotes'">
             <p>{{comment.title}}</p>

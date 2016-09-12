@@ -30,10 +30,6 @@
                 <p>
                     <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upVote(suggestion)" data-ng-show="authentication.user._id !== suggestion.creator._id"></span> Upvotes: {{suggestion.upvotes}}
                 </p>
-                <div data-ng-show="authentication.user._id == suggestion.creator._id">
-                    <a href="/#!/suggestions/{{suggestion._id}}/edit">edit</a>
-                    <a href="/#!/" data-ng-click="delete(suggestion);">delete</a>
-                </div>
             </div>
         </div>
     </div>

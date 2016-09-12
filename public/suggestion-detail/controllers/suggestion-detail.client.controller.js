@@ -34,6 +34,30 @@ angular.module('suggestionDetail')
                 $scope.newComment = '';
             };
 
+            $scope.edit = function () {
+                $scope.suggestion.$update(function () {
+                    $location.path('suggestions/' + $scope.suggestion._id);
+                }, function (errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+            };
+
+            $scope.delete = function (suggestion) {
+                if (suggestion) {
+                    suggestion.$remove(function () {
+                        for (var i in $scope.suggestions) {
+                            if ($scope.suggestions[i] === suggestion) {
+                                $scope.suggestions.splice(i, 1);
+                            }
+                        }
+                    });
+                } else {
+                    $scope.suggestion.$remove(function () {
+                        $location.path('/');
+                    })
+                }
+            };
+
             $scope.upvoteComment = function(comment) {
                 comment.upvotes += 1;
                 $scope.suggestion.$update(function () {

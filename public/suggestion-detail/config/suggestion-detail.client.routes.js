@@ -6,5 +6,8 @@ angular.module('suggestionDetail')
         $routeProvider
             .when('/suggestions/:id', {
                 templateUrl: '/suggestion-detail/views/suggestion-detail.client.view.html'
+            })
+            .when('/suggestions/:id/edit', {
+                templateUrl: '/suggestion-detail/views/suggestion-detail-edit.client.view.html'
             });
     }]);
