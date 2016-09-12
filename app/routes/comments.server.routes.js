@@ -1,15 +1,18 @@
+/**
+ * Created by moritz on 12.09.16.
+ */
 var users = require('../../app/controllers/users.server.controller'),
     comments = require('../../app/controllers/comments.server.controller');
 
 module.exports = function (app) {
-    app.route('/api/comments')
-        .get(comments.list)
-        .post(users.requiresLogin, comments.create);
+    // app.route('/api/comments')
+    //     .get(comments.list)
+    //     .post(comments.create);
 
-    app.route('/api/comments/:commentId')
+    app.route('/api/comments/:commentThreadId')
         .get(comments.read)
-        .put(users.requiresLogin, comments.hasAuthorization, comments.update)
-        .delete(users.requiresLogin, comments.hasAuthorization, comments.delete);
+        .put(comments.update);
+        //.delete(comments.delete);
 
-    app.param('commentId', comments.commentByID);
-}
+    app.param('commmentThreadId', comments.commentThreadByID);
+};

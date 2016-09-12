@@ -1,28 +1,25 @@
 /**
- * Created by moritz on 08.09.16.
+ * Created by moritz on 12.09.16.
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var CommentSchema = new Schema({
-    created: {
+var ReplySchema = new Schema({
+    username: String,
+    subject: String,
+    timestamp: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     },
-    title: {
-        type: String,
-        default: '',
-        trim: true,
-        required: 'Title cannot be blank.'
-    },
-    creator: {
-        type: Schema.ObjectId,
-        ref: 'User'
-    },
-    upvotes: {
-        type: Number,
-        default: 0
-    }
+    body: String
+}, { _id: true });
+
+ReplySchema.add({ replies: [ReplySchema] });
+
+var CommentThreadSchema = new Schema({
+    title: String,
+    replies: [ReplySchema]
 });
 
-mongoose.model('Comment', CommentSchema);
+mongoose.model('Reply', ReplySchema);
+mongoose.model('CommentThread', CommentThreadSchema);

@@ -1,4 +1,4 @@
-var app = angular.module('SuggestionBox' , ['ngResource', 'ngRoute', 'users', 'suggestionList', 'suggestionDetail', 'suggestions']);
+var app = angular.module('SuggestionBox' , ['ngResource', 'ngRoute', 'users', 'suggestionList', 'suggestionDetail', 'suggestions', 'photos']);
 
 app.config(['$locationProvider',
   function($locationProvider) {
