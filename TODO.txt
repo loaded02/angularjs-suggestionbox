@@ -1,5 +1,3 @@
 - upvotes only if you are not the creator of the message (Now: you can only upvote and comment your own suggestion)
 - edit, delete only if you are the creator of the message (ok)
 - create only if you are logged in (ok)
-
-- photo comments create, update need to pass parameters in body

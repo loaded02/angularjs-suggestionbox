@@ -11,8 +11,8 @@ module.exports = function (app) {
 
     app.route('/api/comments/:commentThreadId')
         .get(comments.read)
-        .put(comments.update);
+        .put(users.requiresLogin, comments.update);
         //.delete(comments.delete);
 
-    app.param('commmentThreadId', comments.commentThreadByID);
+    app.param('commentThreadId', comments.commentThreadByID);
 };

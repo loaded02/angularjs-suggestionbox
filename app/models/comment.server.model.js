@@ -5,7 +5,10 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var ReplySchema = new Schema({
-    username: String,
+    username: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    },
     subject: String,
     timestamp: {
         type: Date,

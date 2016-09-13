@@ -6,7 +6,10 @@ angular.module('photos').controller('photoController', [
     '$http',
     '$location',
     'Comments',
-    function($scope, $http, $location, Comments) {
+    'Authentication',
+    function($scope, $http, $location, Comments, Authentication) {
+        $scope.authentication = Authentication;
+
         $http.get('/api/photos')
             .success(function(data, status, headers, config) {
                 $scope.photos = data;
@@ -24,15 +27,15 @@ angular.module('photos').controller('photoController', [
         };
 
         $scope.update = function(parentCommentId, subject, body){
-            var newComment = new Comments({
+            /*dirty way to pass arguments newComment and parentCommentId into JSON Object ot server*/
+            $scope.commentThread.newComment = new Comments({
                 subject:subject,
                 body:body
             });
+            $scope.commentThread.parentCommentId = parentCommentId;
 
             $scope.commentThread.$update({
-                commentThreadId: $scope.photo.commentId,
-                newComment: newComment,
-                parentCommentId: parentCommentId
+                commentThreadId: $scope.photo.commentId
             }, function () {
                 $location.path('/');
             }, function (errorResponse) {

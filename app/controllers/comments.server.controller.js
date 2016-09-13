@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 
 exports.commentThreadByID = function (req, res, next, id) {
     CommentThread.findById(id)
+        .populate('replies', 'username')
         .exec(function (err, commentThread) {
             if (err) return next(err);
             if (!commentThread) return next(new Error('Failed to load commentThread ' + id));
@@ -23,14 +24,14 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
     var commentThread = req.commentThread;
     var newComment = Reply(req.body.newComment);
-    newComment.username = generateRandomUsername(); //replace!!
+    newComment.username = req.user;
     addComment(req, res, commentThread, commentThread,
         req.body.parentCommentId, newComment);
 };
 
 function addComment(req, res, commentThread, currentComment,
                     parentId, newComment){
-    if (commentThread.id == parentId){
+    if (commentThread._id == parentId){
         commentThread.replies.push(newComment);
         updateCommentThread(req, res, commentThread);
     } else {
@@ -59,10 +60,4 @@ function updateCommentThread(req, res, commentThread){
                 res.json({msg: "success"});
             }
         });
-}
-
-function generateRandomUsername(){
-    //typically the username would come from an authenticated session
-    var users=['DaNae', 'Brad', 'Brendan', 'Caleb', 'Aedan', 'Taeg'];
-    return users[Math.floor((Math.random()*5))];
 }
