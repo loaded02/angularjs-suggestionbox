@@ -9,11 +9,17 @@
             <a href="/signout">Signout</a>
         </div>
     </section>
-    <div class="inputbox text-center" data-ng-show="authentication.user">
-        <form ng-submit="create()" class="form-inline">
-            <h3> Submit Your Suggestion </h3>
-            <input type="text" class="form-control" size="60" placeholder="Great ideas here" ng-model="title">
-            <textarea class="form-control" cols="60" rows="5" placeholder="Some description" ng-model="body"></textarea>
+    <div class="inputbox" data-ng-show="authentication.user">
+        <h3> Submit Your Suggestion </h3>
+        <form ng-submit="create()">
+            <div class="formg-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" class="form-control" size="60" placeholder="Great ideas here" ng-model="title">
+            </div>
+            <div class="form-group">
+                <label for="body">Content</label>
+                <textarea id="body" rows="3" class="form-control" placeholder="Some description" ng-model="body"></textarea>
+            </div>
             <button type="submit" class="btn btn-primary">Suggest</button>
         </form>
     </div>
