@@ -13,7 +13,7 @@
 }
 
 .logo-small {
-  font-size: 30px;
+  cursor: pointer;
 }
 
 .bg-grey {
@@ -22,8 +22,4 @@
 
 .login, .inputbox {
     padding: 20px 50px;
-}
-
-.inputbox {
-    dispaly: inline-block;
 }

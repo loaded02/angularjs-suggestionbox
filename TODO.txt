@@ -1,3 +1,4 @@
-- upvotes only if you are not the creator of the message (Now: you can only upvote and comment your own suggestion)
-- edit, delete only if you are the creator of the message (ok)
-- create only if you are logged in (ok)
+- upvotes only if you are not the creator of the message
+- comment suggestion of different user
+(Now: you can only upvote and comment your own suggestion, because backend checks hasAuthorization for /api/suggestion/:suggestionId
+and update suggestion and update comment updates same model. Suggestion and comment model should be separated. And suggestion needs reference for comments.)

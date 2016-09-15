@@ -12,20 +12,26 @@
   <div class="inputbox text-center" data-ng-show="authentication.user">
     <form ng-submit="update()" class="form-inline">
       <h3> Submit Your Comment </h3>
-      <input type="text" class="form-control" size="60" placeholder="Great comment here" ng-model="newComment"></input>
+      <input type="text" class="form-control" size="60" placeholder="Great comment here" ng-model="newComment">
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
   <div class="container-fluid">
       <div>
+        <small data-ng-bind="suggestion.created | date:'medium'"></small>
+        <small>/</small>
+        <small data-ng-bind="suggestion.creator.fullName"></small>
         <h2>{{suggestion.title}}</h2>
         <p>{{suggestion.body}}</p>
-        <div data-ng-show="authentication.user._id == suggestion.creator._id">
+        <div data-ng-show="authentication.user && (authentication.user._id === suggestion.creator._id)">
           <a href="/#!/suggestions/{{suggestion._id}}/edit">edit</a>
           <a href="/#!/" data-ng-click="delete(suggestion);">delete</a>
         </div>
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="comment in suggestion.comments | orderBy:'-upvotes'">
+            <small data-ng-bind="comment.created | date:'medium'"></small>
+            <small>/</small>
+            <small data-ng-bind="comment.creator.fullName"></small>
             <p>{{comment.title}}</p>
             <p>
               <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upvoteComment(comment)" data-ng-show="authentication.user"></span> Upvotes: {{comment.upvotes}}
