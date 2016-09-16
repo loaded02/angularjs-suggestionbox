@@ -1,4 +1,15 @@
 <section ng-controller="SuggestionDetailController" ng-init="findOne();">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-sm-4 text-right">
+        <img src="/img/idea.png" height="80px"/>
+      </div>
+      <div class="col-sm-8 text-left">
+        <h1> Suggestion Box </h1>
+        <p>Make suggestions and upvote others. The best may win!</p>
+      </div>
+    </div>
+  </div>
   <section class="login">
     <div data-ng-show="!authentication.user">
       <a href="/signup">Signup</a>

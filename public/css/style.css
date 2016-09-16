@@ -23,3 +23,15 @@
 .login, .inputbox {
     padding: 20px 50px;
 }
+
+#brandImg {
+    height: 24px;
+}
+
+body {
+    padding-top: 50px;
+}
+
+#mapid {
+    height: 180px;
+}

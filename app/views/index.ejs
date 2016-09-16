@@ -6,33 +6,17 @@
   <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
   <script type="text/javascript" src="/bower_components/angular-route/angular-route.js"></script>
   <script type="text/javascript" src="/bower_components/angular-resource/angular-resource.js"></script>
+  <script type="text/javascript" src="/bower_components/leaflet/dist/leaflet.js"></script>
+  <script type="text/javascript" src="/bower_components/leaflet-providers/leaflet-providers.js"></script>
 
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/bower_components/leaflet/dist/leaflet.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet">
 </head>
 <body ng-app="SuggestionBox">
-<div class="jumbotron">
-  <div class="row">
-    <div class="col-sm-4 text-right">
-      <img src="/img/idea.png" height="80px"/>
-    </div>
-    <div class="col-sm-8 text-left">
-      <h1> Suggestion Box </h1>
-      <p>Make suggestions and upvote others. The best may win!</p>
-    </div>
-  </div>
-</div>
 
 <div ng-view></div>
 
-<div class="container-fluid bg-grey">
-  <h3 class="text-center">Contact</h3>
-  <div class="row text-center">
-    <p><span class="glyphicon glyphicon-map-marker"></span>Darmstadt, Germany</p>
-    <p><span class="glyphicon glyphicon-phone"></span>Phone: +49 123456789</p>
-    <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p>
-  </div>
-</div>
 <!-- Scripts -->
 <script type="text/javascript">
   window.user = <%- user || 'null' %>;

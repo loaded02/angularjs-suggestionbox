@@ -5,7 +5,8 @@ angular.module('suggestionList')
         '$location',
         'Suggestions',
         'Authentication',
-        function($scope, $routeparams, $location, Suggestions, Authentication) {
+        '$anchorScroll',
+        function($scope, $routeparams, $location, Suggestions, Authentication, $anchorScroll) {
             $scope.authentication = Authentication;
 
             $scope.create = function() {
@@ -41,4 +42,17 @@ angular.module('suggestionList')
                     })
                 }
             };
+
+            $scope.scrollTo = function(id) {
+                var old = $location.hash();
+                $location.hash(id);
+                $anchorScroll();
+                //reset to old to keep any additional routing logic from kicking in
+                $location.hash(old);
+            };
+
+            var mymap = L.map('mapid').setView([49.872, 8.65], 13);
+            L.tileLayer.provider('OpenStreetMap.Mapnik', {}).addTo(mymap);
+            var marker = L.marker([49.87, 8.65]).addTo(mymap);
+            marker.bindPopup("<b>Come visit us!</b><br>We welcome you.").openPopup();
         }]);

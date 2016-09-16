@@ -1,15 +1,53 @@
-<section ng-controller="SuggestionListController" ng-init="find();">
-    <section class="login">
-        <div data-ng-show="!authentication.user">
-            <a href="/signup">Signup</a>
-            <a href="/signin">Signin</a>
+<section ng-controller="SuggestionListController" ng-init="find();navbarCollapsed=true;">
+    <div class="jumbotron">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <button type="button" class="navbar-toggle" ng-click="navbarCollapsed = !navbarCollapsed">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/#!/"><img id="brandImg" alt="SuggestionBox" src="/img/idea.png" ></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" ng-class="{'in':!navbarCollapsed}">
+                    <ul class="nav navbar-nav">
+                        <li data-ng-show="authentication.user"><a ng-click="scrollTo('inputbox')">Make Suggestion</a></li>
+                        <li><a ng-click="scrollTo('contact')">Contact</a></li>
+                        <li data-ng-show="!authentication.user"><a href="/signup">Signup</a></li>
+                        <!--<li data-ng-show="!authentication.user"><a href="/signin">Signin</a></li>-->
+                        <li data-ng-show="authentication.user"><a href="/signout">Signout</a></li>
+                    </ul>
+                    <p data-ng-show="authentication.user" class="navbar-text navbar-right">Hello <span data-ng-bind="authentication.user.fullName"></span></p>
+                    <form class="navbar-form navbar-right" action="/signin" method="post" data-ng-show="!authentication.user">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" name="username" id="username" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" id="password" />
+                        </div>
+                        <button type="submit" class="btn btn-default">Signin</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col-sm-4 text-right">
+                <img src="/img/idea.png" height="80px"/>
+            </div>
+            <div class="col-sm-8 text-left">
+                <h1> Suggestion Box </h1>
+                <p>Make suggestions and upvote others. The best may win!</p>
+            </div>
         </div>
-        <div data-ng-show="authentication.user">
-            <h3>Hello <span data-ng-bind="authentication.user.fullName"></span></h3>
-            <a href="/signout">Signout</a>
-        </div>
-    </section>
-    <div class="inputbox" data-ng-show="authentication.user">
+    </div>
+
+    <div id="inputbox" class="inputbox" data-ng-show="authentication.user">
         <h3> Submit Your Suggestion </h3>
         <form ng-submit="create()">
             <div class="formg-group">
@@ -33,10 +71,20 @@
                 <small>/</small>
                 <small data-ng-bind="suggestion.creator.fullName"></small>
                 <a href="/#!/suggestions/{{suggestion._id}}"><h4>{{suggestion.title}}</h4></a>
+                <p>Comments <span class="badge">{{suggestion.comments.length}}</span></p>
                 <p>
                     <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upVote(suggestion)" data-ng-show="authentication.user"></span> Upvotes: {{suggestion.upvotes}}
                 </p>
             </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-grey" id="contact">
+        <h3 class="text-center">Contact</h3>
+        <div class="row text-center">
+            <p><span class="glyphicon glyphicon-map-marker"></span>Darmstadt, Germany</p>
+            <p><span class="glyphicon glyphicon-phone"></span>Phone: +49 123456789</p>
+            <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p>
+            <div id="mapid"></div>
         </div>
     </div>
 </section>
