@@ -41,8 +41,6 @@
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="comment in suggestion.comments | orderBy:'-upvotes'">
             <small data-ng-bind="comment.created | date:'medium'"></small>
-            <small>/</small>
-            <small data-ng-bind="comment.creator.fullName"></small>
             <p>{{comment.title}}</p>
             <p>
               <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upvoteComment(comment)" data-ng-show="authentication.user"></span> Upvotes: {{comment.upvotes}}

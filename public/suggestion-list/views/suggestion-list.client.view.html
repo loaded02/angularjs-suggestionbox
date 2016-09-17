@@ -73,7 +73,7 @@
                 <a href="/#!/suggestions/{{suggestion._id}}"><h4>{{suggestion.title}}</h4></a>
                 <p>Comments <span class="badge">{{suggestion.comments.length}}</span></p>
                 <p>
-                    <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upVote(suggestion)" data-ng-show="authentication.user"></span> Upvotes: {{suggestion.upvotes}}
+                    <span class="glyphicon glyphicon-plus-sign logo-small" ng-click="upVote(suggestion)" data-ng-show="authentication.user && (authentication.user._id !== suggestion.creator._id)"></span> Upvotes: {{suggestion.upvotes}}
                 </p>
             </div>
         </div>

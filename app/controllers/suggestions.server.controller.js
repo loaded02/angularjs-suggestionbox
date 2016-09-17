@@ -99,3 +99,33 @@ exports.hasAuthorization = function (req, res, next) {
     }
     next();
 };
+
+exports.putComment = function (req, res) {
+    var suggestion = req.suggestion;
+    suggestion.comments = req.body.comments.slice();
+
+    suggestion.save(function (err) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json(suggestion);
+        }
+    });
+};
+
+exports.putUpvote = function (req, res) {
+    var suggestion = req.suggestion;
+    suggestion.upvotes = req.body.upvotes;
+
+    suggestion.save(function (err) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json(suggestion);
+        }
+    });
+};

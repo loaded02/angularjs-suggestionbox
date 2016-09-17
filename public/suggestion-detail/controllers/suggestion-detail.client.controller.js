@@ -4,8 +4,9 @@ angular.module('suggestionDetail')
         '$routeParams',
         '$location',
         'Suggestions',
+        'Comments',
         'Authentication',
-        function($scope, $routeParams, $location, Suggestions, Authentication) {
+        function($scope, $routeParams, $location, Suggestions, Comments, Authentication) {
             $scope.authentication = Authentication;
 
             $scope.findOne = function () {
@@ -24,7 +25,7 @@ angular.module('suggestionDetail')
                     title: $scope.newComment,
                     upvotes: 0
                 });
-                $scope.suggestion.$update(function () {
+                Comments.putComment($scope.suggestion, function () {
                     $location.path('suggestions/' + $scope.suggestion._id);
                 }, function (errorResponse) {
                     $scope.error = errorResponse.data.message;
@@ -33,6 +34,15 @@ angular.module('suggestionDetail')
                 //after submit, clear input
                 $scope.newComment = '';
             };
+
+            $scope.upvoteComment = function(comment) {
+                comment.upvotes += 1;
+                Comments.putComment($scope.suggestion, function () {
+                    $location.path('suggestions/' + $scope.suggestion._id);
+                }, function (errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+            }
 
             $scope.edit = function () {
                 $scope.suggestion.$update(function () {
@@ -57,13 +67,4 @@ angular.module('suggestionDetail')
                     })
                 }
             };
-
-            $scope.upvoteComment = function(comment) {
-                comment.upvotes += 1;
-                $scope.suggestion.$update(function () {
-                    $location.path('suggestions/' + $scope.suggestion._id);
-                }, function (errorResponse) {
-                    $scope.error = errorResponse.data.message;
-                });
-            }
         }]);

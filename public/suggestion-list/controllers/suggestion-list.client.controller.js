@@ -4,9 +4,10 @@ angular.module('suggestionList')
         '$routeParams',
         '$location',
         'Suggestions',
+        'Upvotes',
         'Authentication',
         '$anchorScroll',
-        function($scope, $routeparams, $location, Suggestions, Authentication, $anchorScroll) {
+        function($scope, $routeparams, $location, Suggestions, Upvotes, Authentication, $anchorScroll) {
             $scope.authentication = Authentication;
 
             $scope.create = function() {
@@ -35,7 +36,8 @@ angular.module('suggestionList')
             $scope.upVote = function(suggestion) {
                 if (suggestion) {
                     suggestion.upvotes += 1;
-                    suggestion.$update(function () {
+
+                    Upvotes.putUpvote(suggestion, function () {
                         $location.path('/');
                     }, function (errorResponse) {
                         $scope.error = errorResponse.data.message;

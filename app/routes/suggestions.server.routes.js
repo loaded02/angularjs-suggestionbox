@@ -11,5 +11,11 @@ module.exports = function (app) {
         .put(users.requiresLogin, suggestions.hasAuthorization, suggestions.update)
         .delete(users.requiresLogin, suggestions.hasAuthorization, suggestions.delete);
 
+    app.route('/api/suggestions/:suggestionId/comments')
+        .put(users.requiresLogin, suggestions.putComment);
+
+    app.route('/api/suggestions/:suggestionId/upvote')
+        .put(users.requiresLogin, suggestions.putUpvote);
+
     app.param('suggestionId', suggestions.suggestionByID);
 }
